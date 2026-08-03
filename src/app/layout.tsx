@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sanya Mittal",
+  title: "sanyamittal.com",
   description: "Art, projects, and writing by Sanya Mittal.",
 };
 
