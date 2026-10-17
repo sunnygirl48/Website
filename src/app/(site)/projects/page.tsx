@@ -4,13 +4,33 @@ export const metadata: Metadata = {
   title: "projects @ sanyamittal.com",
 };
 
+const projects = [
+  { name: "blue board", href: "https://blueboard.studio", color: "#34c4c7" },
+  { name: "farak", href: "https://farak.world", color: "#452124" },
+];
+
 export default function Projects() {
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-xl font-medium tracking-tight">Projects</h1>
-      <p className="max-w-prose text-foreground/70">
-        Things I&apos;ve built will be listed here.
-      </p>
+    <div className="flex min-h-[calc(100svh-6rem)] items-center">
+      <div className="grid w-full grid-cols-2 gap-12 sm:gap-28">
+        {projects.map((project) => (
+          <a
+            key={project.name}
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col gap-3 transition-opacity hover:opacity-80"
+          >
+            <div
+              className="aspect-[3/2] w-full"
+              style={{ backgroundColor: project.color }}
+            />
+            <span className="text-center text-sm tracking-wide">
+              {project.name}
+            </span>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
