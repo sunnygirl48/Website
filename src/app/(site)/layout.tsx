@@ -1,11 +1,6 @@
 import Link from "next/link";
 
-const links = [
-  { href: "/work", label: "Work" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/shop", label: "Shop" },
-];
+const links = [{ href: "/projects", label: "Projects" }];
 
 export default function SiteLayout({
   children,

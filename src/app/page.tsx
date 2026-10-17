@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <div className="fixed inset-x-0 bottom-8 z-10 flex justify-center">
         <Link
-          href="/work"
+          href="/projects"
           className="text-sm tracking-wide text-white underline underline-offset-4 drop-shadow-lg transition-opacity hover:opacity-70"
         >
           enter here
