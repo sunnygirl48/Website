@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { isHidden } from "@/lib/flags";
 import splash from "../../public/images/splash.jpg";
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
       </div>
       <div className="fixed inset-x-0 bottom-8 z-10 flex justify-center">
         <Link
-          href="/projects"
+          href={isHidden("/work") ? "/projects" : "/work"}
           className="text-sm tracking-wide text-white underline underline-offset-4 drop-shadow-lg transition-opacity hover:opacity-70"
         >
           enter here

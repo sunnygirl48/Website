@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { isHidden } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: "work @ sanyamittal.com",
 };
 
 export default function Work() {
+  if (isHidden("/work")) notFound();
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-xl font-medium tracking-tight">Work</h1>

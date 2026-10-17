@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { isHidden } from "@/lib/flags";
 
-const links = [{ href: "/projects", label: "Projects" }];
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/shop", label: "Shop" },
+].filter((link) => !isHidden(link.href));
 
 export default function SiteLayout({
   children,
