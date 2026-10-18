@@ -11,7 +11,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="flex flex-1 items-center">
+    <div className="flex flex-1 items-center pb-section">
       <div className="grid w-full grid-cols-2 gap-x-gap">
         {projects.map((project) => (
           <a
