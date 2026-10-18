@@ -73,7 +73,7 @@ To launch a page (for example Work), delete `"/work"` from `hiddenOnLive` in `sr
    git commit -m "describe my change"
    git push origin dev
    ```
-   The `dev` preview lives behind Vercel's own login (sign in as `smitta48`) and then the site password. Once it looks right, push to the live site:
+   The `dev` preview is always at https://sanyasite-git-dev-smitta48.vercel.app (it updates itself after every push to `dev`, so use this link, not the per-build links). It sits behind Vercel's own login (sign in as `smitta48`) and then the site password. Once it looks right, push to the live site:
    ```bash
    git checkout main
    git merge dev
