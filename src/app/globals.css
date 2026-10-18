@@ -18,6 +18,9 @@
   /* Touch target: small for a mouse, large for a finger */
   --tap: 1.75rem;
 
+  /* Height of each header link, i.e. the spacing of the vertical menu */
+  --menu: 1.5rem;
+
   /* Type */
   --fs-sm: clamp(0.8125rem, 0.76rem + 0.25vw, 0.9375rem);
   --fs-lg: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
@@ -32,6 +35,7 @@
 @media (pointer: coarse) {
   :root {
     --tap: 2.75rem;
+    --menu: 1.75rem;
   }
 }
 
@@ -45,6 +49,7 @@
   --spacing-section: var(--section);
   --spacing-gap: var(--gap);
   --spacing-tap: var(--tap);
+  --spacing-menu: var(--menu);
 
   --text-fluid-sm: var(--fs-sm);
   --text-fluid-sm--line-height: 1.5;

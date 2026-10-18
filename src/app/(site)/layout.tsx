@@ -18,7 +18,7 @@ export default function SiteLayout({
       <header className="px-safe pt-safe flex items-start justify-between gap-gutter pb-gutter">
         <Link
           href="/"
-          className="inline-flex min-h-tap items-center text-fluid-lg italic tracking-tight transition-opacity hover:opacity-70"
+          className="inline-flex min-h-menu items-center text-fluid-lg italic tracking-tight transition-opacity hover:opacity-70"
         >
           Sanya Mittal
         </Link>
@@ -27,7 +27,7 @@ export default function SiteLayout({
             <Link
               key={link.href}
               href={link.href}
-              className="inline-flex min-h-tap items-center text-fluid-sm tracking-wide text-foreground/70 transition-opacity hover:text-foreground hover:opacity-70"
+              className="inline-flex min-h-menu items-center text-fluid-sm tracking-wide text-foreground/70 transition-opacity hover:text-foreground hover:opacity-70"
             >
               {link.label}
             </Link>
