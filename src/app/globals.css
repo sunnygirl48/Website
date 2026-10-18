@@ -1,8 +1,38 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens. Every size on the site comes from here, so the whole
+ * layout can be tuned in one place. Values are fluid: clamp(min, preferred, max)
+ * where the preferred value scales with the viewport width, so nothing
+ * jumps at a breakpoint.
+ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Space */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem); /* page edges */
+  --section: clamp(2rem, 1rem + 5vw, 6rem); /* vertical breathing room */
+  --gap: clamp(1.5rem, 0.5rem + 8vw, 7rem); /* between side-by-side blocks */
+
+  /* Touch target: small for a mouse, large for a finger */
+  --tap: 1.75rem;
+
+  /* Type */
+  --fs-sm: clamp(0.8125rem, 0.76rem + 0.25vw, 0.9375rem);
+  --fs-lg: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+
+  /* Content column */
+  --content: 48rem;
+
+  /* Which part of the splash art stays in view when it is cropped */
+  --splash-focus: 50% 50%;
+}
+
+@media (pointer: coarse) {
+  :root {
+    --tap: 2.75rem;
+  }
 }
 
 @theme inline {
@@ -10,6 +40,36 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --spacing-gutter: var(--gutter);
+  --spacing-section: var(--section);
+  --spacing-gap: var(--gap);
+  --spacing-tap: var(--tap);
+
+  --text-fluid-sm: var(--fs-sm);
+  --text-fluid-sm--line-height: 1.5;
+  --text-fluid-lg: var(--fs-lg);
+  --text-fluid-lg--line-height: 1.3;
+
+  --container-content: var(--content);
+}
+
+/* Page-edge padding that also clears notches and rounded screen corners */
+@utility px-safe {
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
+}
+
+@utility pt-safe {
+  padding-top: max(var(--gutter), env(safe-area-inset-top));
+}
+
+@utility pb-safe {
+  padding-bottom: max(var(--gutter), env(safe-area-inset-bottom));
+}
+
+@utility object-splash {
+  object-position: var(--splash-focus);
 }
 
 @media (prefers-color-scheme: dark) {

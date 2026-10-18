@@ -14,25 +14,27 @@ export default function SiteLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative flex min-h-svh flex-col">
-      <Link
-        href="/"
-        className="fixed left-0 top-0 z-10 p-8 text-lg italic tracking-tight transition-opacity hover:opacity-70"
-      >
-        Sanya Mittal
-      </Link>
-      <div className="fixed right-0 top-0 z-10 flex flex-col items-end gap-2 p-8 text-sm tracking-wide">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="text-foreground/70 transition-opacity hover:text-foreground hover:opacity-70"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
-      <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-12">
+    <div className="flex min-h-dvh flex-col">
+      <header className="px-safe pt-safe flex items-start justify-between gap-gutter pb-gutter">
+        <Link
+          href="/"
+          className="inline-flex min-h-tap items-center text-fluid-lg italic tracking-tight transition-opacity hover:opacity-70"
+        >
+          Sanya Mittal
+        </Link>
+        <nav aria-label="Primary" className="flex flex-col items-end">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="inline-flex min-h-tap items-center text-fluid-sm tracking-wide text-foreground/70 transition-opacity hover:text-foreground hover:opacity-70"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </header>
+      <main className="px-safe pb-section mx-auto flex w-full max-w-content flex-1 flex-col">
         {children}
       </main>
     </div>

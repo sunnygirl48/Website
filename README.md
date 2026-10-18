@@ -10,12 +10,13 @@ Built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4. H
 
 | File | What it does |
 |---|---|
-| `src/app/page.tsx` | Homepage splash: the full-bleed artwork, my name top-left, and the "enter here" link. |
-| `src/app/(site)/layout.tsx` | Shared frame for Work, Projects, About and Shop: my name top-left, the vertical menu top-right (the `links` list at the top), and the centered content column. |
-| `src/app/(site)/work/page.tsx` | Work page (placeholder for now). |
-| `src/app/(site)/projects/page.tsx` | Projects page: the two colored rectangles. Colors, links and labels are in the `projects` list at the top. |
-| `src/app/(site)/about/page.tsx` | About page (placeholder for now). |
-| `src/app/(site)/shop/page.tsx` | Shop page ("Coming soon" placeholder, no checkout). |
+| `src/app/page.tsx` | Homepage splash: the full-bleed artwork, my name top-left, and the "enter here" link. On the live site it goes to `/projects`; on `dev` it goes to `/work`. |
+| `src/lib/flags.ts` | The live/dev switch. Holds `hiddenOnLive`, the list of pages that are visible while I work but hidden on sanyamittal.com. |
+| `src/app/(site)/layout.tsx` | Shared frame for Work, Projects, About and Shop: my name top-left, the vertical menu top-right (the `links` list at the top, with hidden pages filtered out on the live site), and the centered content column. |
+| `src/app/(site)/work/page.tsx` | Work page (placeholder for now). Hidden on the live site. |
+| `src/app/(site)/projects/page.tsx` | Projects page: the two colored rectangles. Colors, links and labels are in the `projects` list at the top. Live. |
+| `src/app/(site)/about/page.tsx` | About page (placeholder for now). Hidden on the live site. |
+| `src/app/(site)/shop/page.tsx` | Shop page ("Coming soon" placeholder, no checkout). Hidden on the live site. |
 | `src/app/layout.tsx` | Root layout for every page. Sets the fonts and the default tab title (`sanyamittal.com`). |
 | `src/app/globals.css` | Global styles: background and text colors, including dark mode. |
 | `src/app/icon.svg` | The light blue peace sign shown in the browser tab. |
@@ -41,6 +42,15 @@ The `(site)` folder is just a grouping folder. The parentheses mean it shares a 
 - `.env.local` holds a local Vercel token.
 - `.git/` is my version history.
 
+## What's live vs. what I'm working on
+
+`main` is what people see at sanyamittal.com. `dev` is where I work and publish from. Both branches run the same code. A switch in `src/lib/flags.ts` checks whether Vercel is building the production site (`VERCEL_ENV === "production"`):
+
+- **Live site (`main`):** the menu shows only Projects, "enter here" goes to `/projects`, and `/work`, `/about` and `/shop` return a 404.
+- **Localhost and the `dev` preview:** everything shows. The full menu appears, and "enter here" goes to `/work`.
+
+To launch a page (for example Work), delete `"/work"` from `hiddenOnLive` in `src/lib/flags.ts`, check it on `dev`, then publish. The menu link and "enter here" update on their own. When Work is launched, "enter here" will go back to `/work`.
+
 ## How I edit the site
 
 1. **Open the folder in VS Code.** File → Open Folder → `sanyasite`.
@@ -63,7 +73,7 @@ The `(site)` folder is just a grouping folder. The parentheses mean it shares a 
    git commit -m "describe my change"
    git push origin dev
    ```
-   Then push to the live site:
+   The `dev` preview lives behind Vercel's own login (sign in as `smitta48`) and then the site password. Once it looks right, push to the live site:
    ```bash
    git checkout main
    git merge dev
@@ -74,7 +84,9 @@ The `(site)` folder is just a grouping folder. The parentheses mean it shares a 
 
 ## Things to remember
 
-- I always work on the `dev` branch. `git branch` shows which one I'm on.
+- I always work on the `dev` branch and publish from it into `main`. `git branch` shows which one I'm on.
+- I can make extra branches (`git checkout -b name`, created from `main`) to finish one piece of work separately. Each branch gets its own Vercel preview, and I publish one by merging it into `main`.
+- Don't merge `main` into `dev` unless `main` has something `dev` lacks. Keep `dev` as the source of truth.
 - If `npm` isn't found in a terminal, run `eval "$(/opt/homebrew/bin/brew shellenv)"` first. Homebrew isn't on my PATH by default everywhere.
 - `main` is the live site. `dev` gets its own Vercel preview URL.
 - To change the site password: Vercel dashboard → Project → Settings → Environment Variables → `SITE_PASSWORD`, then redeploy. Env var changes don't apply until the next deploy.
@@ -84,6 +96,6 @@ The `(site)` folder is just a grouping folder. The parentheses mean it shares a 
 ## Later
 
 - Replace the plain-text "Sanya Mittal" signature on the homepage with my calligraphy.
-- Build out Work (gallery), About, and Shop.
+- Build out Work (gallery), About, and Shop, then remove each from `hiddenOnLive` to launch it.
 - If I start selling things: Stripe Checkout plus a small database. Vercel's free Hobby plan is for non-commercial use, so I'd need Pro once I'm selling.
 - Verify the email on the Squarespace domain so it doesn't get suspended.

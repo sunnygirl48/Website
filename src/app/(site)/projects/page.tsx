@@ -11,8 +11,8 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="flex min-h-[calc(100svh-6rem)] items-center">
-      <div className="grid w-full grid-cols-2 gap-12 sm:gap-28">
+    <div className="flex flex-1 items-center">
+      <div className="grid w-full grid-cols-2 gap-x-gap">
         {projects.map((project) => (
           <a
             key={project.name}
@@ -25,7 +25,7 @@ export default function Projects() {
               className="aspect-[3/2] w-full"
               style={{ backgroundColor: project.color }}
             />
-            <span className="text-center text-sm tracking-wide">
+            <span className="text-center text-fluid-sm tracking-wide">
               {project.name}
             </span>
           </a>
